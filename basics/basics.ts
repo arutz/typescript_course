@@ -1,4 +1,4 @@
-// all basic type / primitives; NOTE: all primitives are lower case
+// all basic type / primitives; NOTE: all primitives are lower case; also note that typescript knows other core types (arrays, objects, etc.)
 let numberValue:number= 2.3;
 console.log(numberValue);
 let textValue:string = `Template literal ${numberValue}`;
