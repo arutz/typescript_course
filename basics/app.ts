@@ -28,6 +28,7 @@ console.log(addValue);
 
 // will produce an error but not during compile time
 let typeUnsafeResult = addTypeUnsafe('5', 2); // will work because we used a string and a number which has one "valid" code path
+// let error = addTypeUnsafe(5, false); // would not work because we used a combination which will lead to an error beeing thrown
 console.log(typeUnsafeResult);
 
 console.log("log after error"); // NOTE: the script would not execute after the error
