@@ -1,3 +1,3 @@
 # About
 
-Example code for chapters 11-17.
+Example code for chapters 16-17.
