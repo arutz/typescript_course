@@ -1,8 +1,15 @@
 
 
 const button = document.querySelector("#button") as HTMLButtonElement;
-button.addEventListener("click", () => {
-    console.log("Hallo Welt!");
-});
 
-button.addEventListener("mouseover", () => { console.log("dont do it!") });
+function sayHelloWorld() {
+    console.log("Hallo Welt!");
+}
+
+function warnMouseOver() {
+    console.log("dont do it!");
+}
+
+button.addEventListener("click", sayHelloWorld.bind(this));
+
+button.addEventListener("mouseover", warnMouseOver.bind(this));
