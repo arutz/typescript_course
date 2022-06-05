@@ -7,9 +7,8 @@
     {
       "type": "firefox",
       "request": "launch",
-      "name": "Launch Firefox against localhost",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "name": "launch",
+      "url": "http://localhost:3000"
     }
   ]
 }
