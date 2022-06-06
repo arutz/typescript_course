@@ -21,6 +21,13 @@
           "type": "chrome",
           "url": "http://localhost:3000",
           "webRoot": "${workspaceFolder}/typescript-nextgen"
-      }
+      },
+      {
+        "name": "Launch interfaces-classes",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/interfaces-classes"
+    }
   ]
 }
