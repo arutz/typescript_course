@@ -2,13 +2,25 @@
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  /* 
+  * This is a launch config file for VS Code that will attach to a chrome browser or launch the chrome browser
+  * itself to make code debuggable via VS Code (could also be done via sourcemap and browser but without the VS Code features).
+  */
   "version": "0.2.0",
   "configurations": [
-    {
-      "type": "firefox",
-      "request": "launch",
-      "name": "launch",
-      "url": "http://localhost:3000"
-    }
+      {
+          "name": "Attach to Chrome",
+          "port": 9222,
+          "request": "attach",
+          "type": "chrome",
+          "webRoot": "${workspaceFolder}"
+      },
+      {
+          "name": "Launch typescript-nextgen",
+          "request": "launch",
+          "type": "chrome",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}/typescript-nextgen"
+      }
   ]
 }
