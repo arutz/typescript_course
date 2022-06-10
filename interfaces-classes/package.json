@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
+    "start": "concurrently npm:start:*",
+    "start:lite-server": "lite-server",
+    "start:tsc": "tsc -w"
   },
   "keywords": [
     "typescript",
@@ -14,6 +16,7 @@
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^7.2.1",
     "lite-server": "^2.5.4"
   }
 }
