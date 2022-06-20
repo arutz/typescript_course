@@ -1,7 +1,11 @@
 // fun with interfaces and classes
 
 class Department {
-    private _name: string = "";
+
+    protected _employees: string[] = [];
+    public get employees(): string[] {
+        return this._employees;
+    }
 
     public get name(): string {
         return this._name;
@@ -10,34 +14,44 @@ class Department {
         this._name = value;
     }
 
-    private _id: number = -1;
-
     public get id(): number {
         return this._id;
     }
-    public set id(value: number) {
-        this._id = value;
+
+    constructor(private readonly _id:number, private _name:string) {
     }
 
-    // #region builders
-
-    public bName(value: string): Department {
-        this.name = value;
-        return this;
+    describe() {
+        return `[${Department.name} id:${this.id} name:${this.name}]`;
     }
-
-    public bId(value: number): Department {
-        this.id = value;
-        return this;
-    }
-
-    // #endregion builders
 };
 
-let dep = new Department().bName("Development").bId(1337);
+class ITDepartment extends Department {
+    public get admins(): string[] {
+        return this._admins;
+    }
+    public set admins(value: string[]) {
+        this._admins = value;
+    }
 
+    constructor(_id:number, private _admins: string[]) {
+        super(_id, "IT Department");
+    }
 
-console.log(dep);
+    describe() {
+        let description= super.describe();
+        return description.substring(0, description.length-1).concat(` admins:${this._admins}]`)
+    }
+
+}
+
+let dep = new Department(1337, "Development");
+let itDep = new ITDepartment(4, ["Achim"]);
+console.log(dep.describe());
+console.log(itDep.describe());
+const accountCopy = { name: "Xyz", id: 5, describe: dep.describe };
+
+console.log(accountCopy.describe());
 
 document.querySelector("#button")?.addEventListener("click", () => {
     console.log("button pressed");
