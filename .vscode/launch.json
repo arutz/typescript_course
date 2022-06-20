@@ -9,21 +9,28 @@
   "version": "0.2.0",
   "configurations": [
       {
-          "name": "Attach to Chrome",
-          "port": 9222,
-          "request": "attach",
-          "type": "chrome",
-          "webRoot": "${workspaceFolder}"
+        "name": "Launch interfaces-classes (edge)",
+        "request": "launch",
+        "type": "pwa-msedge",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/interfaces-classes"
       },
       {
-          "name": "Launch typescript-nextgen",
-          "request": "launch",
-          "type": "chrome",
-          "url": "http://localhost:3000",
-          "webRoot": "${workspaceFolder}/typescript-nextgen"
+        "name": "Attach to Chrome",
+        "port": 9222,
+        "request": "attach",
+        "type": "chrome",
+        "webRoot": "${workspaceFolder}"
       },
       {
-        "name": "Launch interfaces-classes",
+        "name": "Launch typescript-nextgen",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/typescript-nextgen"
+      },
+      {
+        "name": "Launch interfaces-classes (chrome)",
         "request": "launch",
         "type": "chrome",
         "url": "http://localhost:3000",

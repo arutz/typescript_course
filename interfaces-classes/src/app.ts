@@ -38,3 +38,8 @@ let dep = new Department().bName("Development").bId(1337);
 
 
 console.log(dep);
+
+document.querySelector("#button")?.addEventListener("click", () => {
+    console.log("button pressed");
+});
+
