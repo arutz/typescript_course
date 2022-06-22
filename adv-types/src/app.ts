@@ -22,13 +22,20 @@ type Numeric = number | boolean;
 type Universal = Combineable & Numeric; // would effectively mean that Universal is "number" type (that is the intersection of both of them)
 
 /* typeguards */
+function add(a: number, b: number): number /* NOTE: useage of function overlaods with differing return types!!!! */
+function add(a: string, b: number): string /* NOTE: useage of function overlaods with differing return types!!!! */
+function add(a: number, b: string): string /* NOTE: useage of function overlaods with differing return types!!!! */
+function add(a: string, b: string): string /* NOTE: useage of function overlaods with differing return types!!!! */
 function add(a: Combineable, b: Combineable) {
     if(typeof a === "string"  || typeof b === "string") { // typeguard for primitive types for example
         return a.toString() + b.toString();
     } else {
         return a + b;
     }
-}
+} 
+
+const result = add(1, " Mustermann")
+console.log(result);
 
 type UnknownEmployee = Employee | Admin;
 function printEmployee(emp: UnknownEmployee) {
@@ -90,7 +97,38 @@ moveAnimal({type: "Bird", flyingSpeed: 50});
 /* Type casting */
 let paragraph = document.querySelector("p"); // NOTE: compiler knows that this is a HTMLParagraphElement | null and does not need type casting
 let userInputElement1 = <HTMLInputElement>document.getElementById("user-input")!; // type casting through "diamond"
-let userInputElement2 = document.getElementById("user-input")! as HTMLInputElement; // type casting through "as"
+let userInputElement2 = document.getElementById("user-input") as HTMLInputElement; // type casting through "as"
 
-userInputElement2.value = "Hi There";
+if(userInputElement2)
+    userInputElement2.value = "Hi There";
 
+    /* index properties */
+interface ErrorContainer { // usage of index types
+    id: string;
+    [prop: string]: string // read: interface must have a property of type string with value of value type string (NOTE: property type can only be primitive type string, number)
+}
+
+const errorBag: ErrorContainer = {
+    id: "WRN-VALID-01",
+    email: "not a valid email",
+    username: "must start with a capital letter"
+}
+
+/* outside of course: some fun with regex */
+const measurementUnitRegEx = /(\d+(\.(\d+)))\s{0,1}(cm|mm|dm|m|miles)/;
+type Unit = "cm" | "mm" | "dm" | "m" | "miles";
+type Measurement = number;
+type MeasurementUnit = `${Measurement} ${Unit}` |`${Measurement}${Unit}`; 
+
+let measurementUnit: MeasurementUnit = "228.50mm";
+function toMeasurement(measurementUnit:MeasurementUnit): Measurement {
+    let measurmentValue = measurementUnit.replace(measurementUnitRegEx, "$1");
+    return Number(measurmentValue);
+}
+function toUnit(measurementUnit:MeasurementUnit): Unit {
+    let unitValue = measurementUnit.replace(measurementUnitRegEx, "$4");
+    return <Unit>unitValue;
+}
+
+console.log(toMeasurement(measurementUnit));
+console.log(toUnit(measurementUnit)); 
