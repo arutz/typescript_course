@@ -11,14 +11,14 @@
       {
         "name": "Launch interfaces-classes (edge)",
         "request": "launch",
-        "type": "pwa-msedge",
+        "type": "msedge",
         "url": "http://localhost:3000",
         "webRoot": "${workspaceFolder}/interfaces-classes"
       },
       {
         "name": "Launch advanced types (edge)",
         "request": "launch",
-        "type": "pwa-msedge",
+        "type": "msedge",
         "url": "http://localhost:3000",
         "webRoot": "${workspaceFolder}/adv-types"
       },
