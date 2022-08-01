@@ -131,4 +131,19 @@ function toUnit(measurementUnit:MeasurementUnit): Unit {
 }
 
 console.log(toMeasurement(measurementUnit));
-console.log(toUnit(measurementUnit)); 
+console.log(toUnit(measurementUnit));
+
+/* optional chaining */
+const fetchedData = {
+    id: "u1",
+    name: "max",
+    job: { title: "CEO", description: "owns company" }
+}
+
+console.log(fetchedData?.job?.title); // note that the "?" functions as a safe access here where the next / following chain elements are only accessed if element is present
+
+/* nullish coalescence */
+const userInput = "";
+
+console.log(userInput || "DEFAULT"); // will print DEFAULT because the "||" operator will take the first non empty non-null non-undefined value
+console.log(userInput ?? "DEFAULT2"); // will print "" empty string since only non-null and non-undefined values lead to else case
