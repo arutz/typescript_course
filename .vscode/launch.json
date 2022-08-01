@@ -23,18 +23,11 @@
         "webRoot": "${workspaceFolder}/adv-types"
       },
       {
-        "name": "Launch typescript-nextgen",
+        "name": "Launch generics (edge)",
         "request": "launch",
-        "type": "chrome",
+        "type": "msedge",
         "url": "http://localhost:3000",
-        "webRoot": "${workspaceFolder}/typescript-nextgen"
-      },
-      {
-        "name": "Launch interfaces-classes (chrome)",
-        "request": "launch",
-        "type": "chrome",
-        "url": "http://localhost:3000",
-        "webRoot": "${workspaceFolder}/interfaces-classes"
-    }
+        "webRoot": "${workspaceFolder}/generics"
+      }
   ]
 }
