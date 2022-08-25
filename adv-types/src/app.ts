@@ -21,6 +21,8 @@ type Numeric = number | boolean;
 
 type Universal = Combineable & Numeric; // would effectively mean that Universal is "number" type (that is the intersection of both of them)
 
+// let univ1:Universal = 2 + "2"; // => not possible since "2" is not a number
+
 /* typeguards */
 function add(a: number, b: number): number /* NOTE: useage of function overlaods with differing return types!!!! */
 function add(a: string, b: number): string /* NOTE: useage of function overlaods with differing return types!!!! */
@@ -34,7 +36,7 @@ function add(a: Combineable, b: Combineable) {
     }
 } 
 
-const result = add(1, " Mustermann")
+const result = add(1, "Mustermann")
 console.log(result);
 
 type UnknownEmployee = Employee | Admin;
@@ -105,7 +107,7 @@ if(userInputElement2)
     /* index properties */
 interface ErrorContainer { // usage of index types
     id: string;
-    [prop: string]: string // read: interface must have a property of type string with value of value type string (NOTE: property type can only be primitive type string, number)
+    [prop: string]: string // read: interface must have a property of type string with value of type string (NOTE: property type can only be primitive type string, number)
 }
 
 const errorBag: ErrorContainer = {
@@ -114,7 +116,9 @@ const errorBag: ErrorContainer = {
     username: "must start with a capital letter"
 }
 
-/* outside of course: some fun with regex */
+console.log(JSON.stringify(errorBag));
+
+/* outside of course: some fun with regex and type definition as strings with certain values */
 const measurementUnitRegEx = /(\d+(\.(\d+)))\s{0,1}(cm|mm|dm|m|miles)/;
 type Unit = "cm" | "mm" | "dm" | "m" | "miles";
 type Measurement = number;
@@ -146,4 +150,4 @@ console.log(fetchedData?.job?.title); // note that the "?" functions as a safe a
 const userInput = "";
 
 console.log(userInput || "DEFAULT"); // will print DEFAULT because the "||" operator will take the first non empty non-null non-undefined value
-console.log(userInput ?? "DEFAULT2"); // will print "" empty string since only non-null and non-undefined values lead to else case
+console.log(userInput ?? "DEFAULT2"); // will print "" (empty string) since only non-null and non-undefined values lead to else case
