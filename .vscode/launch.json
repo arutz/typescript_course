@@ -28,6 +28,13 @@
         "type": "msedge",
         "url": "http://localhost:3000",
         "webRoot": "${workspaceFolder}/generics"
+      },
+      {
+        "name": "Launch decorators (edge)",
+        "request": "launch",
+        "type": "msedge",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/decorators"
       }
   ]
 }
