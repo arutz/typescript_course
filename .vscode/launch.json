@@ -8,6 +8,7 @@
   */
   "version": "0.2.0",
   "configurations": [
+
       {
         "name": "Launch interfaces-classes (edge)",
         "request": "launch",
@@ -35,6 +36,13 @@
         "type": "msedge",
         "url": "http://localhost:3000",
         "webRoot": "${workspaceFolder}/decorators"
+      }
+      {
+        "name": "Launch learning project (edge)",
+        "request": "launch",
+        "type": "msedge",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/learning-project"
       }
   ]
 }
