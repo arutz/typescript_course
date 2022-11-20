@@ -13,6 +13,51 @@ function Autobind(_target: any, _methodName : string, descriptor: PropertyDescri
 }
 // #endregion
 
+//#region Validators
+interface Validatable {
+    value:string | number;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    min?: number;
+    max?: number;
+}
+
+function validate(validatableInput:Validatable) {
+    var validationErrors:string[] = [];
+    switch(typeof validatableInput.value) {
+        case "string":
+            if(!validatableInput.required && validatableInput.value.toString().trim().length ===0) {
+                return [];
+            }
+            if(validatableInput.value.toString().trim().length === 0) {
+                validationErrors.push("requires a value");
+            }
+            if(validatableInput.minLength && validatableInput.value.toString().trim().length < validatableInput.minLength) {
+                validationErrors.push(`the value needs to be at least ${validatableInput.minLength} characters long`);
+            }
+            if(validatableInput.maxLength && validatableInput.value.toString().trim().length > validatableInput.maxLength) {
+                validationErrors.push(`the value needs to be at most ${validatableInput.maxLength} characters long`);
+            }
+            break;
+        case "number":
+            if(!validatableInput.required && validatableInput.value === 0) {
+                return [];
+            }
+            if(validatableInput.min && validatableInput.value < validatableInput.min) {
+                validationErrors.push(`the value must be greater than ${validatableInput.min}`);
+            }
+            if(validatableInput.max && validatableInput.value > validatableInput.max) {
+                validationErrors.push(`the value must not be greater than ${validatableInput.max}`);
+            }
+            break;
+        default: break;
+    }
+    return validationErrors;
+}
+
+//#endregion
+
 // #region cache
 
 interface ProjectCache {
@@ -107,8 +152,15 @@ class ProjectInput {
         const title = this.titleInputElement.value;
         const description = this.descriptionInputElement.value;
         const peopleNumber = +this.peopleNumberInputElement.value;
-        if(title.trim().length == 0 || description.trim().length == 0 || peopleNumber == 0) {
-            throw new Error("Validation Error occured");
+        var validationErrors:string[] = [
+            ...validate({value: title, required: true, minLength: 5}),
+            ...validate({value: description, minLength: 1, maxLength: 200}),
+            ...validate({value: peopleNumber, min: 1, max: 10})
+        ]
+        if(validationErrors.length > 0) {
+            const message = `there were validation errors: ${validationErrors}`;
+            alert(message);
+            throw new Error(message);
         }
         const newProject = new Project(title, description, peopleNumber);
         return newProject;
